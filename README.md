@@ -7,7 +7,7 @@ Seja bem vindo ao projeto!
 Primeiro pode-se clonar esse projeto com o comando: 
 
 ```
-git clone https://github.com/HiltonWS/doencionario.git
+git clone https://gitlab.com/HiltonWS/doencionario.git
 ```
 
 Para iniciar a aplicação utilizando o maven, favor utilizar o seguinte comando:
