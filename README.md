@@ -46,8 +46,6 @@ Ele retornará no `header` um `bearer` token, copiar somente o token e ir em `Au
 
 Foi deixado habilitado o Swagger na nuvem também através deste endereço
 
-``´
-```
 
 ## Tecnologias ultilizadas
 * Java 8
