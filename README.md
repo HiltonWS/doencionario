@@ -27,7 +27,7 @@ http://localhost:8080/swagger-ui.html
 ```
 Nesse endereço pode-se ver o que cada serviço é, e o que cada serviço espera :D
 
-Mas, para acesa-los deve-se usar um usuário e senha, assim pode gerar o o token para desbloquear (Cadeado) os endpoints.
+Mas, para acessa-los deve-se usar um usuário e senha.
 
 ### Autenticando...
 
