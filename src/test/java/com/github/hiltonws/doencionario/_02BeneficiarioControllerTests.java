@@ -3,17 +3,16 @@ package com.github.hiltonws.doencionario;
 import com.github.hiltonws.doencionario.dto.BeneFiciarioDoencaDTO;
 import com.github.hiltonws.doencionario.dto.BeneficiarioDTO;
 import com.github.hiltonws.doencionario.dto.DoencaDTO;
+import com.github.hiltonws.doencionario.security.jwt.AccountCredentials;
 import org.junit.Assert;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -35,6 +34,25 @@ public class _02BeneficiarioControllerTests {
     private TestRestTemplate testRestTemplate;
 
     private static Long lastId;
+
+    @BeforeEach
+    public void setUp() throws Exception {
+        final String baseUrl = "http://localhost:" + port + "/rest/v1/login";
+        URI uri = new URI(baseUrl);
+
+        AccountCredentials credentials = new AccountCredentials();
+        credentials.setUsername("admin");
+        credentials.setPassword("admin");
+        HttpEntity<AccountCredentials> request = new HttpEntity<>(credentials);
+
+        HttpHeaders headers = this.testRestTemplate.postForEntity(uri, request, Void.class).getHeaders();
+
+        testRestTemplate.getRestTemplate().setInterceptors(
+                Collections.singletonList((req, body, execution) -> {
+                    req.getHeaders().addAll(headers);
+                    return execution.execute(req, body);
+                }));
+    }
 
     @Test
     @Order(1)

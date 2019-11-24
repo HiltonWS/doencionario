@@ -3,7 +3,6 @@ package com.github.hiltonws.doencionario;
 import com.github.hiltonws.doencionario.dto.DoencaDTO;
 import com.github.hiltonws.doencionario.security.jwt.AccountCredentials;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.jupiter.api.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +13,8 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.web.servlet.function.ServerRequest;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Collections;
 
 @RunWith(SpringRunner.class)
