@@ -34,6 +34,7 @@ public class _02BeneficiarioControllerTests {
     private TestRestTemplate testRestTemplate;
 
     private static Long lastId;
+    private static Long lastIdDoenca;
 
     @BeforeEach
     public void setUp() throws Exception {
@@ -93,16 +94,34 @@ public class _02BeneficiarioControllerTests {
 
     }
 
+    //No gitlab lab cada classe de teste executa uma nova instancia
+    //Depdencia de teste, podendo ser colocado em utilitário
+    private void deveInserirADoencaERetornarOId() throws Exception {
+
+        final String baseUrl = "http://localhost:" + port + "/rest/v1/doenca";
+        URI uri = new URI(baseUrl);
+
+        DoencaDTO dto = new DoencaDTO();
+        dto.setCodigo("A00");
+        dto.setDescricao("Cólera");
+        HttpEntity<DoencaDTO> request = new HttpEntity<>(dto);
+
+        ResponseEntity<Long> result = this.testRestTemplate.postForEntity(uri, request, Long.class);
+        lastIdDoenca = result.getBody();
+        Assert.assertNotNull(result.getBody());
+
+    }
+
     @Test
     @Order(3)
     public void deveVincularADoencaAoBeneficiario() throws Exception {
-
+        deveInserirADoencaERetornarOId();
         final String baseUrl = "http://localhost:" + port + "/rest/v1/beneficiario/doenca";
         URI uri = new URI(baseUrl);
 
         BeneFiciarioDoencaDTO dto = new BeneFiciarioDoencaDTO();
 
-        dto.setIdDoenca(1L);
+        dto.setIdDoenca(lastIdDoenca);
         dto.setIdBeneficiario(lastId);
         HttpEntity<BeneFiciarioDoencaDTO> request = new HttpEntity<>(dto);
 
