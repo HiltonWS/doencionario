@@ -44,7 +44,7 @@ Ele retornará no `header` um `bearer` token, copiar somente o token e ir em `Au
 
 ## Usando na nuvem (AWS)
 
-Foi deixado habilitado o Swagger na nuvem também através deste endereço
+Foi deixado habilitado o Swagger na nuvem também através deste endereço http://ec2-18-209-94-100.compute-1.amazonaws.com/swagger-ui.html
 
 
 ## Tecnologias ultilizadas
